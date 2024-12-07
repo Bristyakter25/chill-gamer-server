@@ -40,11 +40,10 @@ async function run() {
 
         const database = client.db('chillGamerDB'); 
         const gamesCollection = database.collection('games'); 
-
-
         const userCollection = client.db('chillGamerDB').collection('users');
-
         const reviewCollection = client.db('chillGamerDB').collection('reviews');
+
+        
 
 
         app.post('/users',async(req,res)=>{
@@ -64,28 +63,28 @@ async function run() {
 
         app.get('/review', async (req, res) => {
             try {
-                const reviews = await reviewCollection.find().toArray(); // Retrieve all reviews
-                res.send(reviews); // Send the reviews back as JSON
+                const reviews = await reviewCollection.find().toArray(); 
+                res.send(reviews);
             } catch (error) {
                 console.error('Error fetching reviews:', error);
                 res.status(500).json({ message: 'Failed to fetch reviews' });
             }
         });
 
-app.get('/reviews/:id', async (req, res) => {
-    const id = req.params.id; // Get the ID from the request params
-    try {
-        const review = await reviewCollection.findOne({ _id: new ObjectId(id) }); // Query by ID
-        if (review) {
-            res.send(review); // Send the document as a response
-        } else {
-            res.status(404).json({ message: 'Review not found' }); // Handle if no review found
-        }
-    } catch (error) {
-        console.error('Error fetching review by ID:', error);
-        res.status(500).json({ message: 'Failed to fetch review' }); // Handle server errors
-    }
-});
+        app.get('/reviews/:id', async (req, res) => {
+           const id = req.params.id;
+           try {
+           const review = await reviewCollection.findOne({ _id: new ObjectId(id) }); 
+           if (review) {
+            res.send(review); 
+           } else {
+            res.status(404).json({ message: 'Review not found' }); 
+           }
+           } catch (error) {
+           console.error('Error fetching review by ID:', error);
+           res.status(500).json({ message: 'Failed to fetch review' }); 
+           }
+        });
         app.get('/highest-rated-games', async (req, res) => {
             try {
                 const games = await gamesCollection
@@ -100,6 +99,21 @@ app.get('/reviews/:id', async (req, res) => {
                 res.status(500).json({ message: 'Failed to fetch games' });
             }
         });
+
+        app.get('/highest-rated-games/:id', async (req, res) => {
+            const id = req.params.id;
+            try {
+            const details = await gamesCollection.findOne({ _id: new ObjectId(id) }); 
+            if (details) {
+             res.send(details); 
+            } else {
+             res.status(404).json({ message: 'Details not found' }); 
+            }
+            } catch (error) {
+            console.error('Error fetching review by ID:', error);
+            res.status(500).json({ message: 'Failed to fetch details' }); 
+            }
+         });
 
         
 
