@@ -71,6 +71,17 @@ async function run() {
             }
         });
 
+        app.get('/users',async(req,res) => {
+            try{
+                const users = await userCollection.find().toArray();
+                res.send(users);
+
+            }catch(error) {
+                console.error('Error fetching reviews:', error);
+                res.status(500).json({ message: 'Failed to fetch users' });
+            }
+        })
+
         app.get('/reviews/:id', async (req, res) => {
            const id = req.params.id;
            try {
@@ -114,6 +125,35 @@ async function run() {
             res.status(500).json({ message: 'Failed to fetch details' }); 
             }
          });
+
+        //  my reviews page
+        
+       
+    app.get('/review/user/:email', async (req, res) => {
+    const email = req.params.email; 
+    try {
+      const userReviews = await reviewCollection.find({ userEmail: email }).toArray();
+      if (userReviews.length > 0) {
+        res.send(userReviews); 
+      } else {
+        res.status(404).json({ message: 'No reviews found for this user' }); 
+      }
+    } catch (error) {
+      console.error('Error fetching user reviews:', error);
+      res.status(500).json({ message: 'Failed to fetch user reviews' });
+    }
+    });
+
+
+  app.delete('/review/:id', async (req, res) => {
+    const { id } = req.params;
+    const query = { _id: new ObjectId(id) }
+    const result = await reviewCollection.deleteOne(query);
+    res.send(result);
+    
+  });
+  
+        
 
         
 
