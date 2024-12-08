@@ -181,13 +181,6 @@ async function run() {
     res.send(result);
   })
 
-  
-  
-        
-
-        
-
-
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
     }
