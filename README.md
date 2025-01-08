@@ -18,7 +18,7 @@
   4. **cors:** To enable Cross-Origin Resource Sharing between client and server.
   5. **nodemon:** For automatic server restarting during development (optional for dev).
 
-## How to Run Locally:
+### How to Run Locally:
  1. Clone the repository: git clone https://github.com/Bristyakter25/chill-gamer-server.git
  2. Navigate into the directory: cd chill-gamer-server
  3. Install dependencies: npm install
@@ -27,8 +27,8 @@
                         JWT_SECRET=your-secret-key
  5. Start the server: npm run dev
 
-## Live Link :  https://chill-gamer-3b17d.web.app/
-## Server Side Repo : https://github.com/Bristyakter25/chill-gamer-server/tree/main 
+### Live Link :  https://chill-gamer-3b17d.web.app/
+### Server Side Repo : https://github.com/Bristyakter25/chill-gamer-server/tree/main 
  
 
 
