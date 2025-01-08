@@ -28,7 +28,7 @@
  5. Start the server: npm run dev
 
 ## Live Link :  https://chill-gamer-3b17d.web.app/
-## Server Side Repo : 
+## Server Side Repo : https://github.com/Bristyakter25/chill-gamer-server/tree/main 
  
 
 
